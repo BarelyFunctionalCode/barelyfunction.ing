@@ -18,10 +18,10 @@ export default function Header({
   }
 
   return (
-    <HeaderContainer $isNavSmall={isNavSmall}>
+    <Container $isNavSmall={isNavSmall}>
       <TitleContainer onClick={() => {shrinkNav(false); changeActiveSection('')}}>
         <Title>barelyfunction.ing</Title>
-        <BlinkText style={{marginLeft: '1rem', fontSize: '3vw'}}>█</BlinkText>
+        <BlinkText>█</BlinkText>
       </TitleContainer>
       
       <NavContainer $isNavSmall={isNavSmall}>
@@ -41,15 +41,15 @@ export default function Header({
           })
         }
       </NavContainer>
-    </HeaderContainer>
+    </Container>
   );
 }
 
 
-interface HeaderContainerProps {
+interface ContainerProps {
   $isNavSmall: boolean;
 }
-const HeaderContainer = styled.div<HeaderContainerProps>`
+const Container = styled.div<ContainerProps>`
   display: flex;
   flex: ${({ $isNavSmall }) => $isNavSmall ? '0 0 0' : '1 1 0'};
   flex-direction: column;
@@ -68,7 +68,7 @@ const TitleContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   cursor: pointer;
 
   animation: type-out 2s ease-in-out;
@@ -85,14 +85,17 @@ const TitleContainer = styled.div`
 const Title = styled.span`
   display: flex;
 
-  font-size: 4vw;
+  font-size: 4vh;
   color: ${({ theme }) => theme.colors?.primary};
 
   overflow: hidden;
 `;
 
 const BlinkText = styled.span`
+  font-size: 3vh;
   color: ${({ theme }) => theme.colors?.primary};
+
+  margin-left: 1rem;
 
   animation: blink 1s infinite;
 
@@ -111,7 +114,7 @@ interface NavContainerProps {
 }
 const NavContainer = styled.div<NavContainerProps>`
   display: flex;
-  width: ${({ $isNavSmall }) => $isNavSmall ? '100%' : '20rem'};
+  width: ${({ $isNavSmall }) => $isNavSmall ? '100%' : '50vh'};
 
   flex-direction: row;
   flex-wrap: wrap;
@@ -143,8 +146,8 @@ interface NavSectionProps {
 }
 const NavSection = styled.div<NavSectionProps>`
   display: flex;
-  width: ${({ $isNavSmall }) => $isNavSmall ? '12rem' : '8rem'};
-  height: ${({ $isNavSmall }) => $isNavSmall ? '2rem' : '4rem'};
+  width: ${({ $isNavSmall }) => $isNavSmall ? '8rem' : '6rem'};
+  height: ${({ $isNavSmall }) => $isNavSmall ? '1rem' : '4rem'};
 
   align-items: center;
   justify-content: center;

@@ -62,11 +62,11 @@ export default function Page() {
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
+
   width: 100%;
   height: 100%;
-  flex-direction: column;
-
-  transition: justify-content 0.5s ease-in-out;
 `;
 
 
@@ -76,14 +76,17 @@ interface ContentContainerProps {
 }
 const ContentContainer = styled.div<ContentContainerProps>`
   display: flex;
-  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 99%;
   height: ${({ $activeSection, $sectionName }) => $activeSection == $sectionName ? '100%' : '0%'};
   
-  padding: ${({ $activeSection, $sectionName }) => $activeSection == $sectionName ? '2rem' : '0'};
   border: 1px solid ${({ theme, $activeSection, $sectionName }) => $activeSection == $sectionName ? theme.colors?.primary : 'transparent'};
   border-radius: 10px;
   
-  overflow: hidden;
+  overflow: ${({ $activeSection, $sectionName }) => $activeSection == $sectionName ? 'scroll' : 'hidden'};
 
   transition: height 0.5s ease-in-out, border 0.5s ease-in-out, padding 0.5s ease-in-out;
   transition-delay: ${({ $activeSection, $sectionName }) => $activeSection == $sectionName ? '1s' : '0.5s'};
@@ -94,10 +97,14 @@ interface ContentProps {
   $sectionName: string;
 }
 const Content = styled.div<ContentProps>`
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  width: 90%;
   height: 100%;
 
   opacity: ${({ $activeSection, $sectionName }) => $activeSection == $sectionName ? '1' : '0'};
+
   
   transition: opacity 0.5s ease-in-out;
   transition-delay: ${({ $activeSection, $sectionName }) => $activeSection == $sectionName ? '1.5s' : '0s'};
