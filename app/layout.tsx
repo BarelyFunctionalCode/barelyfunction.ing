@@ -3,7 +3,10 @@ import { Roboto_Mono } from 'next/font/google'
 import './globals.css'
 import StyledComponentsRegistry from './registry';
 
-const font = Roboto_Mono({ subsets: ['latin'] })
+const font = Roboto_Mono({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+})
 
 export const metadata: Metadata = {
   title: 'Barely Functional',
