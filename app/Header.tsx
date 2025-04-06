@@ -19,10 +19,13 @@ export default function Header({
 
   return (
     <Container $isNavSmall={isNavSmall}>
-      <TitleContainer onClick={() => {shrinkNav(false); changeActiveSection('')}}>
-        <Title>barelyfunction.ing</Title>
-        <BlinkText>█</BlinkText>
-      </TitleContainer>
+        <TitleHorizontalContainer onClick={() => {shrinkNav(false); changeActiveSection('')}}>
+          <TitleContainer>
+            <Title>barelyfunction.ing</Title>
+            <ZigZag />
+          </TitleContainer>
+          <BlinkText>█</BlinkText>
+        </TitleHorizontalContainer>
       
       <NavContainer $isNavSmall={isNavSmall}>
         {
@@ -60,8 +63,7 @@ const Container = styled.div<ContainerProps>`
   transition: flex 0.5s ease-in-out;
 `;
 
-
-const TitleContainer = styled.div`
+const TitleHorizontalContainer = styled.div`
   display: flex;
   width: 100%;
   align-self: center;
@@ -82,6 +84,14 @@ const TitleContainer = styled.div`
   }
 `;
 
+const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-self: center;
+  flex-basis: fit-content;
+`;
+
 const Title = styled.span`
   display: flex;
 
@@ -89,6 +99,35 @@ const Title = styled.span`
   color: ${({ theme }) => theme.colors?.primary};
 
   overflow: hidden;
+`;
+
+const ZigZag = styled.div`
+  margin-top: -0.4rem;
+  --a: 120deg; /* control the angle */
+  --s: 8px; /* size of the zig-zag */
+  --b: 2px;  /* control the thickness */
+  
+  background: #b2cc0dbf;
+  height: calc(var(--b) + var(--s)/(2*tan(var(--a)/2)));
+  width: 100%;
+  --_g:var(--s) repeat-x conic-gradient(from calc(var(--a)/-2) at bottom,
+    #0000,#000 1deg calc(var(--a) - 1deg),#0000 var(--a));
+  mask: 50% calc(-1*var(--b))/var(--_g) exclude,50%/var(--_g);
+
+  z-index: -1;
+
+  animation: appear 2.1s linear;
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+    99% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 `;
 
 const BlinkText = styled.span`
