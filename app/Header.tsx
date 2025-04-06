@@ -23,6 +23,12 @@ export default function Header({
           <TitleContainer>
             <Title>barelyfunction.ing</Title>
             <ZigZag />
+            <div className='popup'>
+              <PopupBox>
+                <PopupTitle>(1/1) [DEP00P] DeprecationWarning:</PopupTitle>
+                <PopupContent>This will be unsupported in the next version.</PopupContent>
+              </PopupBox>
+            </div>
           </TitleContainer>
           <BlinkText>█</BlinkText>
         </TitleHorizontalContainer>
@@ -90,6 +96,14 @@ const TitleContainer = styled.div`
   width: 100%;
   align-self: center;
   flex-basis: fit-content;
+
+  & > .popup {
+    display: none;
+  }
+
+  &:hover > .popup {
+    display: flex;
+  }
 `;
 
 const Title = styled.span`
@@ -129,6 +143,37 @@ const ZigZag = styled.div`
     }
   }
 `;
+
+// popup box thar appears when you hover over the title
+const PopupBox = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 0.5rem;
+  padding: 0.3rem;
+  border: #aaa 1px solid;
+  background-color: #222;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+`;
+
+const PopupTitle = styled.span`
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 400;
+  font-size: 0.7rem;
+  font-style: italic;
+
+  margin-bottom: 0.2rem;
+
+  color: #888;
+`;
+
+const PopupContent = styled.span`
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 400;
+  font-size: 0.8rem;
+`;
+
 
 const BlinkText = styled.span`
   font-size: 3vh;
