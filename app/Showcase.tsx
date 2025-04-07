@@ -30,7 +30,7 @@ const Container = styled.div<{ $contentlength?: number }>`
   display: flex;
   flex-direction: column;
 
-  width: 30vh;
+  width: clamp(18rem, 20vw, 30rem);
   height: 30vh;
 
   padding: 1rem;
