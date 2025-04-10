@@ -97,12 +97,18 @@ const TitleContainer = styled.div`
   align-self: center;
   flex-basis: fit-content;
 
+
   & > .popup {
-    display: none;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s linear;
   }
 
   &:hover > .popup {
-    display: flex;
+    z-index: 1;
+    opacity: 1;
+
+    transition-delay: 3s;
   }
 `;
 
@@ -209,7 +215,7 @@ const NavContainer = styled.div<NavContainerProps>`
   transition: width 0.5s ease-in-out;
   transition-delay: ${({ $isNavSmall }) => $isNavSmall ? '0s' : '0.5s'};
 
-  animation: fade-in 2s ease-in-out;
+  animation: fade-in 3s ease-in-out;
   @keyframes fade-in {
     0% {
       opacity: 0;
@@ -254,6 +260,6 @@ const NavSection = styled.div<NavSectionProps>`
     color: black;
   }
 
-  transition: all 0.5s ease-in-out, color 0.5s ease-in-out;
-  transition-delay: ${({ $isNavSmall }) => $isNavSmall ? '0.5s' : '0s'};
+  transition: all 0.5s ease-in-out;
+  transition-delay: ${({ $isNavSmall }) => $isNavSmall ? '0s' : '0.5s'};
 `;
